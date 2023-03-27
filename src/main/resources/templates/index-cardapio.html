@@ -1,3 +1,18 @@
+<style rel="stylesheet">
+  table, tr, td, th{
+    font-size:17px;
+    text-align: center;
+  }
+  th{
+    background-color: orange;
+    height: 20px;
+  }
+  tr{
+    background-color: bisque;
+    width: 100px;
+    height: 50px;
+  }
+</style>
 <div th:switch="${item}">
   <h2 th:case="null">Ainda não há itens!</h2>
   <div th:case="*">
@@ -12,10 +27,10 @@
       </thead>
       <tbody>
       <tr th:each="it : ${item}">
-        <td th:text="${it.nome}"></td>
-        <td th:text="${it.descricao}"></td>
-        <td th:text="${it.preco}"></td>
-        <td><a th:href="@{/adicionarCarrinho/{id}(id=${it.id})}">Adicionar ao carrinho</a></td>
+        <td width="200px" th:text="${it.nome}"></td>
+        <td width="300px" th:text="${it.descricao}"></td>
+        <td width="75px" th:text="${it.preco}"></td>
+        <td  width="200px" bgcolor="#FFF"><a th:href="@{/adicionarCarrinho/{id}(id=${it.id})}">Adicionar ao carrinho</a></td>
       </tr>
       </tbody>
     </table>

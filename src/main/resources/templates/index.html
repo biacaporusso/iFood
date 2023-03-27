@@ -1,17 +1,31 @@
+<style rel="stylesheet">
+  table, tr, td, th{
+    padding:0px;
+    font-size:17px;
+    text-align: center;
+  }
+  td{
+    height:30px;
+  }
+  th{
+    background-color:orange;
+    color: black;
+  }
+</style>
 <div th:switch="${listarestaurantes}">
   <h2 th:case="null">Ainda não há restaurantes!</h2>
   <div th:case="*">
-    <h2>Restaurantes</h2>
+    <h2>Página Inicial</h2>
     <table>
       <thead>
       <tr>
-        <th>Nome</th>
+        <th width="300px" height="30px">Restaurantes</th>
       </tr>
       </thead>
       <tbody>
       <tr th:each="restaurante : ${listarestaurantes}">
-        <td th:text="${restaurante.nome}"></td>
-        <td><a th:href="@{/index-cardapio/{id}(id=${restaurante.id})}">Cardápio</a></td>
+        <td bgcolor="bisque" th:text="${restaurante.nome}"></td>
+        <td width="150px"><a th:href="@{/index-cardapio/{id}(id=${restaurante.id})}">ver cardápio</a></td>
       </tr>
       </tbody>
     </table>

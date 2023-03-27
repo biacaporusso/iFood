@@ -1,3 +1,18 @@
+<style rel="stylesheet">
+  table, tr, td, th{
+    font-size:17px;
+    text-align: center;
+  }
+  th{
+    background-color: orange;
+    height: 10px;
+  }
+  tr{
+    background-color: bisque;
+    width: 100px;
+    height: 50px;
+  }
+</style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,10 +25,12 @@
 <table>
   <thead>
   <tr>
-    <th>Restaurante</th>
-    <th>Item</th>
-    <th>Preço</th>
-    <th>Quantidade</th>
+    <th height="15px" width="300px">Restaurante</th>
+    <th height="15px" width="200px">Item</th>
+    <th height="15px" width="75px">Preço</th>
+    <th height="15px" width="120px">Quantidade</th>
+    <th height="15px" width="100px">Aumentar</th>
+    <th height="15px" width="100px">Diminuir</th>
   </tr>
   </thead>
   <tbody>
@@ -24,7 +41,7 @@
     <td th:text="${item.quantidadeCarrinho}"></td>
     <td><a th:href="@{/adicionarCarrinho/{id}(id=${item.id})}"> + </a></td>
     <td><a th:href="@{/desincrementar/{id}(id=${item.id})}"> - </a></td>
-    <td><a th:href="@{/carrinho/remover/{id}(id=${item.id})}">Remover</a></td>
+    <td width="200px" bgcolor="white"><a th:href="@{/carrinho/remover/{id}(id=${item.id})}">remover do carrinho</a></td>
   </tr>
   </tbody>
 </table>
