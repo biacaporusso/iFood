@@ -51,7 +51,6 @@ public class CardapioController {
     public String adicionarAoCarrinho (@PathVariable("id") int id, HttpServletRequest request) {
 
         ItemCardapio item = cardapioRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("O id do item é inválido: " + id));
-        System.out.printf("\n\n !!!!!!!!!!@@@@@@ nome restaurante = %s", item.getRestaurante().getNome());
         List<ItensCarrinho> carrinho = (List<ItensCarrinho>)request.getSession().getAttribute(SESSION_CARRINHO);
 
         // se não tem nenhum item adicionado ao carrinho ainda, cria um novo carrinho
@@ -70,8 +69,7 @@ public class CardapioController {
         }
         // se ainda não tem o item no carrinho
         if (jaExiste == 0) {
-            ItensCarrinho pdc = new ItensCarrinho(item.getId(), item.getNome(), item.getDescricao(), item.getPreco());
-
+            ItensCarrinho pdc = new ItensCarrinho(item.getId(), item.getNome(), item.getDescricao(), item.getPreco(), item.getRestaurante().getNome());
             carrinho.add(pdc);
         }
 
@@ -79,6 +77,7 @@ public class CardapioController {
         double valorTotalCarrinho = 0;
         for (ItensCarrinho pt : carrinho) {
             valorTotalCarrinho = valorTotalCarrinho + (pt.getQuantidadeCarrinho() * pt.getPreco());
+            pt.setValorTotal(valorTotalCarrinho);
         }
 
 
@@ -106,6 +105,8 @@ public class CardapioController {
                 break;
             }
         }
+
+
         request.getSession().setAttribute(SESSION_CARRINHO, sessionCarrinho);
 
         return "redirect:/carrinho";

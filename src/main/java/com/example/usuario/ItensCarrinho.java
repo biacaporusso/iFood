@@ -5,12 +5,15 @@ public class ItensCarrinho extends ItemCardapio {
     private int quantidadeCarrinho;
     private double valorTotal;
 
-    public ItensCarrinho(int i, String n, String d, double p) {
+    private String nomeRestaurante;
+
+    public ItensCarrinho(int i, String n, String d, double p, String nomeRest) {
         this.id = i;
         this.nome = n;
         this.descricao = d;
         this.preco = p;
         this.quantidadeCarrinho = 1;
+        this.nomeRestaurante = nomeRest;
     }
 
     public int getQuantidadeCarrinho() {
@@ -22,19 +25,19 @@ public class ItensCarrinho extends ItemCardapio {
     }
 
     public double getValorTotal() {
-        return valorTotal;
+        return this.valorTotal;
     }
 
     public void setValorTotal(double valor) {
         this.valorTotal = valor;
     }
 
-//    public String getNomeRestaurante() {
-//        return this.nomeRestaurante;
-//    }
-//
-//    public void setNomeRestaurante(String n) {
-//        this.nomeRestaurante = n;
-//    }
+    public String getNomeRestaurante() {
+        return this.nomeRestaurante;
+    }
+
+    public void setNomeRestaurante(String n) {
+        this.nomeRestaurante = n;
+    }
 }
 
