@@ -4,6 +4,7 @@ public class ItensCarrinho extends ItemCardapio {
 
     private int quantidadeCarrinho;
     private double valorTotal;
+
     public ItensCarrinho(int i, String n, String d, double p) {
         this.id = i;
         this.nome = n;
@@ -27,4 +28,13 @@ public class ItensCarrinho extends ItemCardapio {
     public void setValorTotal(double valor) {
         this.valorTotal = valor;
     }
+
+//    public String getNomeRestaurante() {
+//        return this.nomeRestaurante;
+//    }
+//
+//    public void setNomeRestaurante(String n) {
+//        this.nomeRestaurante = n;
+//    }
 }
+
