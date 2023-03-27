@@ -1,0 +1,16 @@
+<form action="#"
+      th:action="@{/atualizar-cardapio/{id}(id=${cardapio.id})}"
+      th:object="${cardapio}"
+      method="post">
+  <label for="nome">Nome: </label>
+  <input type="text" th:field="*{nome}" id="nome" required>
+  <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+  <br/>
+  <label for="descricao">Descricao:</label>
+  <input type="text" th:field="*{descricao}" id="descricao">
+  <br/>
+  <label for="preco">Preço:</label>
+  <input type="number" step="0.01" th:field="*{preco}" id="preco" min="0" required>
+  <br/>
+  <input type="submit" value="Atualizar">
+</form>

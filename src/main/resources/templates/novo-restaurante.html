@@ -1,0 +1,6 @@
+<form action="#" th:action="@{/adicionar-restaurante}" th:object="${restaurante}" method="post">
+  <label for="nome">Nome: </label>
+  <input type="text" th:field="*{nome}" id="nome" required>
+  <br/>
+  <input type="submit" value="Adicionar">
+</form>

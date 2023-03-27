@@ -1,0 +1,39 @@
+<style rel="stylesheet">
+  table, tr, td, th{
+    font-size:17px;
+    text-align: center;
+  }
+  th{
+    background-color: orange;
+    height: 5px;
+  }
+  tr{
+    background-color: bisque;
+    width: 100px;
+    height: 50px;
+  }
+</style>
+<div th:switch="${item}">
+  <h2 th:case="null">Ainda não há itens!</h2>
+  <div th:case="*">
+    <h2>Cardapio</h2>
+    <table>
+      <thead>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Preço</th>
+      </thead>
+      <tbody>
+      <tr th:each="it : ${item}">
+        <td width="200px" text-color="#000" th:text="${it.nome}"></td>
+        <td width="300px" text-color="#000" th:text="${it.descricao}"></td>
+        <td width="75px" text-color="#000" th:text="${it.preco}"></td>
+        <td width="70px" bgcolor="#FFF"><a th:href="@{/editar-item/{id}(id=${it.id})}">Editar</a></td>
+        <td width="70px" bgcolor="#FFF"><a th:href="@{/remover-item/{id}(id=${it.id})}">Remover</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <p><a th:href="@{/novo-cardapio/{id}(id=${id})}" >Adicionar novo cardápio</a></p>
+  <p><a th:href="@{/index}" >Voltar para Restaurantes</a></p>
+</div>
