@@ -1,0 +1,21 @@
+<div th:switch="${listarestaurantes}">
+  <h2 th:case="null">Ainda não há restaurantes!</h2>
+  <div th:case="*">
+    <h2>Restaurantes</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Nome</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="restaurante : ${listarestaurantes}">
+        <td th:text="${restaurante.nome}"></td>
+        <td><a th:href="@{/index-cardapio/{id}(id=${restaurante.id})}">Cardápio</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <p><a href="/carrinho">Visualizar pedidos</a></p>
+</div>
+

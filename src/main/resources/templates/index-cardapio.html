@@ -1,0 +1,24 @@
+<div th:switch="${item}">
+  <h2 th:case="null">Ainda não há itens!</h2>
+  <div th:case="*">
+    <h2>Cardapio</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Preço</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="it : ${item}">
+        <td th:text="${it.nome}"></td>
+        <td th:text="${it.descricao}"></td>
+        <td th:text="${it.preco}"></td>
+        <td><a th:href="@{/adicionarCarrinho/{id}(id=${it.id})}">Adicionar ao carrinho</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <p><a th:href="@{/index}" >Voltar para Restaurantes</a></p>
+</div>
