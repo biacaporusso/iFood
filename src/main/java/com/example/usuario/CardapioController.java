@@ -43,6 +43,8 @@ public class CardapioController {
         double valorTotal = (double) request.getSession().getAttribute(SESSION_CARRINHO_TOTAL);
         model.addAttribute("valorTotal", valorTotal);
 
+        verificaSessao(request);
+
         return "carrinho";
     }
 
@@ -106,8 +108,23 @@ public class CardapioController {
             }
         }
 
+        List<ItensCarrinho> carrinho = (List<ItensCarrinho>)request.getSession().getAttribute(SESSION_CARRINHO);
+
+        double valorTotalCarrinho = 0;
+        for (ItensCarrinho pt : carrinho) {
+            valorTotalCarrinho = valorTotalCarrinho + (pt.getQuantidadeCarrinho() * pt.getPreco());
+            pt.setValorTotal(valorTotalCarrinho);
+        }
+
+        for (ItensCarrinho pt : carrinho) {
+            ItemCardapio verificaItem = cardapioRepository.findById(pt.getId()).orElse(null);
+            if (verificaItem == null) {
+                carrinho.remove(verificaItem);
+            }
+        }
 
         request.getSession().setAttribute(SESSION_CARRINHO, sessionCarrinho);
+        request.getSession().setAttribute(SESSION_CARRINHO_TOTAL, valorTotalCarrinho);
 
         return "redirect:/carrinho";
     }
@@ -137,9 +154,34 @@ public class CardapioController {
             }
         }
 
+        // atualiza o preço
+        double valorTotalCarrinho = 0;
+        for (ItensCarrinho pt : carrinho) {
+            valorTotalCarrinho = valorTotalCarrinho + (pt.getQuantidadeCarrinho() * pt.getPreco());
+            pt.setValorTotal(valorTotalCarrinho);
+        }
+
+
         request.getSession().setAttribute(SESSION_CARRINHO, carrinho);
+        request.getSession().setAttribute(SESSION_CARRINHO_TOTAL, valorTotalCarrinho);
 
         return "redirect:/carrinho";
+
+    }
+
+    public void verificaSessao(HttpServletRequest request) {
+
+        //ItemCardapio item = cardapioRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("O id do item é inválido: " + id));
+        List<ItensCarrinho> carrinho = (List<ItensCarrinho>)request.getSession().getAttribute(SESSION_CARRINHO);
+
+        for (ItensCarrinho pt : carrinho) {
+            ItemCardapio verificaItem = cardapioRepository.findById(pt.getId()).orElse(null);
+            if (verificaItem == null) {
+                carrinho.remove(verificaItem);
+            }
+        }
+
+        request.getSession().setAttribute(SESSION_CARRINHO, carrinho);
 
     }
 
