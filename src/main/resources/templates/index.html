@@ -1,30 +1,33 @@
 <style rel="stylesheet">
   table, tr, td, th{
-    width:500px;
     padding:0px;
     font-size:17px;
     text-align: center;
   }
   td{
-    width:150px;
     height:30px;
   }
   th{
-    background-color:#060;
-    color:#FFF;
+    background-color: orange;
+    color: black;
   }
 </style>
 <div th:switch="${listarestaurantes}">
   <h2 th:case="null">Ainda não há restaurantes!</h2>
   <div th:case="*">
-    <h2>Restaurantes</h2>
+    <h2>Página Inicial</h2>
     <table width="500">
+      <thead>
+      <tr>
+        <th width="500px" height="30px">Restaurantes</th>
+      </tr>
+      </thead>
       <tbody>
           <tr th:each="restaurante : ${listarestaurantes}">
-            <td bgcolor="orange" th:text="${restaurante.nome}"></td>
-            <td bgcolor="bisque"><a th:href="@{/editar/{id}(id=${restaurante.id})}">Editar</a></td>
-            <td bgcolor="bisque"><a th:href="@{/remover/{id}(id=${restaurante.id})}">Remover</a></td>
-            <td bgcolor="bisque"><a th:href="@{/index-cardapio/{id}(id=${restaurante.id})}">Cardápio</a></td>
+            <td bgcolor="bisque" th:text="${restaurante.nome}"></td>
+            <td width="100px" ><a th:href="@{/editar/{id}(id=${restaurante.id})}">Editar</a></td>
+            <td width="100px" ><a th:href="@{/remover/{id}(id=${restaurante.id})}">Remover</a></td>
+            <td width="100px" ><a th:href="@{/index-cardapio/{id}(id=${restaurante.id})}">Cardápio</a></td>
           </tr>
       </tbody>
     </table>
