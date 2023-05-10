@@ -5,7 +5,6 @@ Há dois projetos diferentes: adm e user.
 
 
 No adm, é possível adicionar, editar e excluir restaurantes e os cardápios dos restaurantes.
-
 No user, é possível somente visualizar os restaurantes disponíveis e seus cardápios, e adicionar pedidos ao carrinho de compras.
 
 ## Criação do projeto:
